@@ -1,0 +1,25 @@
+{
+  "name": "dreamy-birthday-date-planner",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Dreamy Birthday Date Planner - Korean Pastel-Blue Scrapbook Invitation & Interactive Activity Planner",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "seed": "node src/db/seed.js",
+    "create-admin": "node src/db/create_admin.js",
+    "test": "node --test tests/01_wizard_scenarios.test.js tests/02_security_and_integrity.test.js tests/03_server_integration.test.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "keywords": [
+    "birthday-planner",
+    "scrapbook",
+    "invitation",
+    "vietnamese",
+    "korean-pastel"
+  ],
+  "author": "Antigravity Senior Full-Stack Engineer",
+  "license": "MIT"
+}
