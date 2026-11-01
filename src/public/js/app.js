@@ -220,10 +220,13 @@ export function renderLandingContent(settings, catalog = state.catalog) {
   // Render 4 Teaser Cards dynamically (Mondstadt Travel Guide Style)
   const teaserGrid = document.getElementById('landing-teaser-grid');
   if (teaserGrid && Array.isArray(settings.teaser_cards)) {
-    const defaultTags = ['01 · ẨM THỰC', '02 · CAFE CHILL', '03 · WORKSHOP', '04 · PHIM RẠP'];
+    const defaultTags = ['01 · ĐỒ ĂN', '02 · CAFE', '03 · WORKSHOP', '04 · PHOTOBOOTH'];
     teaserGrid.innerHTML = settings.teaser_cards.map((card, idx) => {
       const imgSrc = (card.image_url && card.image_url.trim() !== '') ? card.image_url : (fallbackImgs[idx] || fallbackImgs[0]);
-      const cardTitle = card.caption || card.title || `Hạng mục 0${idx+1}`;
+      let cardTitle = card.caption || card.title || `Hạng mục 0${idx+1}`;
+      if (idx === 0 && (cardTitle === 'Ẩm Thực' || cardTitle === 'Ẩm thực')) cardTitle = 'Đồ ăn';
+      if (idx === 1 && (cardTitle === 'Cafe Chill' || cardTitle === 'Cafe & Trà')) cardTitle = 'Cafe';
+      if (idx === 3 && (cardTitle === 'Phim' || cardTitle === 'Phim Rạp')) cardTitle = 'Photobooth';
       return `
         <div class="travel-card-item">
           <div class="travel-card-media">
@@ -293,11 +296,11 @@ export function renderLandingActivityShowcase(catalog) {
       </p>
 
       <div class="showcase-grid">
-        <!-- Ẩm Thực -->
+        <!-- Đồ ăn -->
         <div class="showcase-col">
           <div class="showcase-col-title">
             <span class="col-icon">🍜</span>
-            <span class="col-heading">Ẩm Thực (${allDishes.length})</span>
+            <span class="col-heading">Đồ ăn (${allDishes.length})</span>
           </div>
           <div class="showcase-tags">
             ${allDishes.length > 0 
@@ -306,11 +309,11 @@ export function renderLandingActivityShowcase(catalog) {
           </div>
         </div>
 
-        <!-- Cafe & Nước -->
+        <!-- Cafe -->
         <div class="showcase-col">
           <div class="showcase-col-title">
             <span class="col-icon">☕</span>
-            <span class="col-heading">Cafe & Nước (${allCafes.length})</span>
+            <span class="col-heading">Cafe (${allCafes.length})</span>
           </div>
           <div class="showcase-tags">
             ${allCafes.length > 0 

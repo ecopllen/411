@@ -525,10 +525,10 @@ function renderContentEditorTab(container) {
     'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=80'
   ];
   const defaultTeaserTitles = [
-    'Ẩm Thực & Món Ngon',
-    'Cafe & Không Gian Chill',
-    'Workshop & Làm Thủ Công',
-    'Photobooth & Chụp Ảnh Kỷ Niệm 📸'
+    'Đồ ăn',
+    'Cafe',
+    'Workshop',
+    'Photobooth'
   ];
 
   container.innerHTML = `

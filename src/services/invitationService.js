@@ -3,26 +3,26 @@ import { getDb } from '../db/database.js';
 export const DEFAULT_TEASER_CARDS = [
   {
     id: 'food',
-    title: 'Món ngon ấm bụng 🍜',
-    caption: 'Món ngon ấm bụng 🍜',
+    title: 'Đồ ăn',
+    caption: 'Đồ ăn',
     image_url: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 'drinks',
-    title: 'Cafe ngập nắng ☕',
-    caption: 'Cafe ngập nắng ☕',
+    title: 'Cafe',
+    caption: 'Cafe',
     image_url: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 'workshops',
-    title: 'Workshop xinh 🕯️',
-    caption: 'Workshop xinh 🕯️',
+    title: 'Workshop',
+    caption: 'Workshop',
     image_url: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 'photobooths',
-    title: 'Photobooth 📸',
-    caption: 'Chụp ảnh kỷ niệm 📸',
+    title: 'Photobooth',
+    caption: 'Photobooth',
     image_url: 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=500&auto=format&fit=crop&q=80'
   }
 ];
@@ -69,6 +69,14 @@ export function getInvitationSettings(includeUnpublished = false) {
           let id = card.id;
           let title = card.title;
           let caption = card.caption;
+          if (id === 'food') {
+            if (title === 'Ẩm Thực' || !title) title = 'Đồ ăn';
+            if (caption === 'Ẩm Thực' || !caption) caption = 'Đồ ăn';
+          }
+          if (id === 'drinks') {
+            if (title === 'Cafe & Trà' || !title) title = 'Cafe';
+            if (caption === 'Cafe & Trà' || !caption) caption = 'Cafe';
+          }
           if (id === 'movies') {
             id = 'photobooths';
             if (title === 'Phim' || !title) title = 'Photobooth';
