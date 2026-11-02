@@ -736,7 +736,7 @@ body {
 }
 
 .travel-card-item:hover .travel-card-media img {
-  transform: scale(1.06);
+  transform: scale(1.02);
 }
 
 .travel-card-badge {

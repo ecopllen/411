@@ -519,10 +519,10 @@ function renderContentEditorTab(container) {
 
   const defaultMsg = 'Dưới đây là các đề xuất về những hướng phát triển tiềm năng cho dự án, chúng tôi đánh giá nếu bảng kế hoạch hoàn thiện, đây sẽ là một chuỗi các hoạt động mang tầm ảnh hưởng tới thị trường.';
   const defaultTeaserImgs = [
-    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=80'
+    '/assets/teaser_food.jpg',
+    '/assets/teaser_cafe.jpg',
+    '/assets/teaser_workshop.jpg',
+    '/assets/teaser_photobooth.jpg'
   ];
   const defaultTeaserTitles = [
     'Đồ ăn',
@@ -592,7 +592,10 @@ function renderContentEditorTab(container) {
             ${[0, 1, 2, 3].map(i => {
               const card = teasers[i] || {};
               const cTitle = card.title || card.caption || defaultTeaserTitles[i];
-              const cImg = (card.image_url && card.image_url.trim() !== '') ? card.image_url : defaultTeaserImgs[i];
+              let cImg = (card.image_url && card.image_url.trim() !== '') ? card.image_url : defaultTeaserImgs[i];
+              if (!cImg || cImg.includes('unsplash.com')) {
+                cImg = defaultTeaserImgs[i];
+              }
               return `
                 <div style="background: #F8FAFC; border: 1.5px solid #BAE6FD; border-radius: var(--radius-sm); padding: 1.1rem;">
                   <strong style="color: var(--ocean-deep); font-size: 0.95rem; display: block; margin-bottom: 0.5rem;">Thẻ ${i+1}:</strong>
@@ -720,7 +723,10 @@ function renderContentEditorTab(container) {
 
     const updatedTeasers = [0, 1, 2, 3].map(i => {
       const titleVal = document.getElementById(`teaser-title-${i}`)?.value?.trim() || defaultTeaserTitles[i];
-      const imgVal = document.getElementById(`teaser-img-${i}`)?.value?.trim() || defaultTeaserImgs[i];
+      let imgVal = document.getElementById(`teaser-img-${i}`)?.value?.trim() || defaultTeaserImgs[i];
+      if (!imgVal || imgVal.includes('unsplash.com')) {
+        imgVal = defaultTeaserImgs[i];
+      }
       return {
         id: ['food', 'drinks', 'workshops', 'movies'][i],
         title: titleVal,

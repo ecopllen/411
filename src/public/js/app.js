@@ -209,12 +209,12 @@ export function renderLandingContent(settings, catalog = state.catalog) {
     ctaBtn.textContent = rawText.replace(/[🩵💙]/g, '').trim();
   }
 
-  // Fallback sample photos if empty
+  // Fallback sample photos if empty - Permanent fixed assets
   const fallbackImgs = [
-    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=80'
+    '/assets/teaser_food.jpg',
+    '/assets/teaser_cafe.jpg',
+    '/assets/teaser_workshop.jpg',
+    '/assets/teaser_photobooth.jpg'
   ];
 
   // Render 4 Teaser Cards dynamically (Mondstadt Travel Guide Style)
@@ -222,7 +222,10 @@ export function renderLandingContent(settings, catalog = state.catalog) {
   if (teaserGrid && Array.isArray(settings.teaser_cards)) {
     const defaultTags = ['01 · ĐỒ ĂN', '02 · CAFE', '03 · WORKSHOP', '04 · PHOTOBOOTH'];
     teaserGrid.innerHTML = settings.teaser_cards.map((card, idx) => {
-      const imgSrc = (card.image_url && card.image_url.trim() !== '') ? card.image_url : (fallbackImgs[idx] || fallbackImgs[0]);
+      let imgSrc = (card.image_url && card.image_url.trim() !== '') ? card.image_url : (fallbackImgs[idx] || fallbackImgs[0]);
+      if (!imgSrc || imgSrc.includes('unsplash.com')) {
+        imgSrc = fallbackImgs[idx] || fallbackImgs[0];
+      }
       let cardTitle = card.caption || card.title || `Hạng mục 0${idx+1}`;
       if (idx === 0 && (cardTitle === 'Ẩm Thực' || cardTitle === 'Ẩm thực')) cardTitle = 'Đồ ăn';
       if (idx === 1 && (cardTitle === 'Cafe Chill' || cardTitle === 'Cafe & Trà')) cardTitle = 'Cafe';
